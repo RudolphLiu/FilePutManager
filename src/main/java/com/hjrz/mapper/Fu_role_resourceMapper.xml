@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hjrz.dao.Fu_role_resourceMapper" >
+  <resultMap id="BaseResultMap" type="com.hjrz.entity.Fu_role_resource" >
+    <id column="fu_role_resource_id" property="fu_role_resource_id" jdbcType="BIGINT" />
+    <result column="fu_role_id" property="fu_role_id" jdbcType="BIGINT" />
+    <result column="fu_resource_id" property="fu_resource_id" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fu_role_resource_id, fu_role_id, fu_resource_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_role_resource
+    where fu_role_resource_id = #{fu_role_resource_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fu_role_resource
+    where fu_role_resource_id = #{fu_role_resource_id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hjrz.entity.Fu_role_resource" >
+    <selectKey resultType="java.lang.Long" keyProperty="fu_role_resource_id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fu_role_resource (fu_role_id, fu_resource_id)
+    values (#{fu_role_id,jdbcType=BIGINT}, #{fu_resource_id,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hjrz.entity.Fu_role_resource" >
+    <selectKey resultType="java.lang.Long" keyProperty="fu_role_resource_id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fu_role_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fu_role_id != null" >
+        fu_role_id,
+      </if>
+      <if test="fu_resource_id != null" >
+        fu_resource_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fu_role_id != null" >
+        #{fu_role_id,jdbcType=BIGINT},
+      </if>
+      <if test="fu_resource_id != null" >
+        #{fu_resource_id,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hjrz.entity.Fu_role_resource" >
+    update fu_role_resource
+    <set >
+      <if test="fu_role_id != null" >
+        fu_role_id = #{fu_role_id,jdbcType=BIGINT},
+      </if>
+      <if test="fu_resource_id != null" >
+        fu_resource_id = #{fu_resource_id,jdbcType=BIGINT},
+      </if>
+    </set>
+    where fu_role_resource_id = #{fu_role_resource_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hjrz.entity.Fu_role_resource" >
+    update fu_role_resource
+    set fu_role_id = #{fu_role_id,jdbcType=BIGINT},
+      fu_resource_id = #{fu_resource_id,jdbcType=BIGINT}
+    where fu_role_resource_id = #{fu_role_resource_id,jdbcType=BIGINT}
+  </update>
+</mapper>

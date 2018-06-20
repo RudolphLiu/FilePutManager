@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hjrz.dao.Fu_roleMapper" >
+  <resultMap id="BaseResultMap" type="com.hjrz.entity.Fu_role" >
+    <id column="fu_role_id" property="fu_role_id" jdbcType="BIGINT" />
+    <result column="fu_parent_id" property="fu_parent_id" jdbcType="BIGINT" />
+    <result column="fu_role_name" property="fu_role_name" jdbcType="VARCHAR" />
+    <result column="fu_role_desc" property="fu_role_desc" jdbcType="VARCHAR" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fu_role_id, fu_parent_id, fu_role_name, fu_role_desc, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fu_role
+    where fu_role_id = #{fu_role_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fu_role
+    where fu_role_id = #{fu_role_id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hjrz.entity.Fu_role" >
+    <selectKey resultType="java.lang.Long" keyProperty="fu_role_id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fu_role (fu_parent_id, fu_role_name, fu_role_desc, 
+      create_time)
+    values (#{fu_parent_id,jdbcType=BIGINT}, #{fu_role_name,jdbcType=VARCHAR}, #{fu_role_desc,jdbcType=VARCHAR}, 
+      #{create_time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hjrz.entity.Fu_role" >
+    <selectKey resultType="java.lang.Long" keyProperty="fu_role_id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fu_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fu_parent_id != null" >
+        fu_parent_id,
+      </if>
+      <if test="fu_role_name != null" >
+        fu_role_name,
+      </if>
+      <if test="fu_role_desc != null" >
+        fu_role_desc,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fu_parent_id != null" >
+        #{fu_parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="fu_role_name != null" >
+        #{fu_role_name,jdbcType=VARCHAR},
+      </if>
+      <if test="fu_role_desc != null" >
+        #{fu_role_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hjrz.entity.Fu_role" >
+    update fu_role
+    <set >
+      <if test="fu_parent_id != null" >
+        fu_parent_id = #{fu_parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="fu_role_name != null" >
+        fu_role_name = #{fu_role_name,jdbcType=VARCHAR},
+      </if>
+      <if test="fu_role_desc != null" >
+        fu_role_desc = #{fu_role_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where fu_role_id = #{fu_role_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hjrz.entity.Fu_role" >
+    update fu_role
+    set fu_parent_id = #{fu_parent_id,jdbcType=BIGINT},
+      fu_role_name = #{fu_role_name,jdbcType=VARCHAR},
+      fu_role_desc = #{fu_role_desc,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP}
+    where fu_role_id = #{fu_role_id,jdbcType=BIGINT}
+  </update>
+</mapper>
