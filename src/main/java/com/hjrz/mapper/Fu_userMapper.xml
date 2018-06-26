@@ -16,6 +16,13 @@
     create_time
   </sql>
 
+  <select id="userlogin" resultMap="BaseResultMap">
+    select
+  <include refid="Base_Column_List"/>
+    from fu_user
+    where fu_username =#{fu_username,jdbcType=VARCHAR} and fu_password = #{fu_password,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />

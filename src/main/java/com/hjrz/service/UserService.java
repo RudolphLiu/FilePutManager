@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -34,6 +36,16 @@ public class UserService {
         userMapper.insert(user);
         LoggerUtils.fmtDebug(getClass(), "注册插入完毕！", JSONObject.fromObject(user).toString());
     }
+
+    public Fu_user userlogin(String username,String password)
+    {
+        Map<String,String> map = new HashMap<String, String>();
+        map.put("fu_username",username);
+        map.put("fu_password",password);
+        Fu_user user = userMapper.userlogin(map);
+        return user;
+    }
+
 
     //根据用户名获取用户信息
     public Fu_user selectByUserName(String username)
