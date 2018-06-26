@@ -5,7 +5,7 @@
                         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 	   default-lazy-init="true">
 
-	<description>Shiro Configuration</description>
+	<description>——————Shiro Configuration——————</description>
 
 	<!-- Shiro's main business-tier object for web-enabled applications -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -16,12 +16,6 @@
 	<!-- 項目自定义的Realm -->
 	<bean id="myShiroRealm" class="com.hjrz.shiro.MyShiroRealm">
 		<property name="cacheManager" ref="cacheManager" />
-        <property name="credentialsMatcher" ref="credentialsMatcher"/>
-	</bean>
-
-	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-		<property name="hashAlgorithmName" value="md5" />
-		<property name="hashIterations" value="1" />
 	</bean>
 
 	<!-- Shiro Filter -->
@@ -29,7 +23,8 @@
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login" />
 		<property name="unauthorizedUrl" value="/error" />
-		<property name="filterChainDefinitions">
+		<property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"/>
+		<!--<property name="filterChainDefinitions">
 			<value>
 				/login = anon
 				/tosignform = anon
@@ -43,8 +38,12 @@
 
 				/** = authc
 			</value>
-		</property>
+		</property>-->
 	</bean>
+
+	<bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"/>
+
+	<bean id="filterChainDefinitionMapBuilder" class="com.hjrz.shiro.FilterChainDefinitionMapBuilder"/>
 
 	<!-- 用户授权信息Cache -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />

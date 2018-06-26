@@ -8,7 +8,7 @@
     <result column="fu_realname" property="fu_realname" jdbcType="VARCHAR" />
     <result column="fu_gender" property="fu_gender" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
     <result column="fu_phonenum" property="fu_phonenum" jdbcType="VARCHAR" />
-    <result column="fu_state" property="fu_state" jdbcType="VARCHAR" />
+    <result column="fu_state" property="fu_state" jdbcType="VARCHAR" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
     <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >

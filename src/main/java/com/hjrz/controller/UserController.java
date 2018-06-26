@@ -1,6 +1,7 @@
 package com.hjrz.controller;
 
 import com.hjrz.data.ExchangeData;
+import com.hjrz.entity.Fu_user;
 import com.hjrz.pojo.Signin;
 import com.hjrz.service.UserService;
 import com.hjrz.util.EncryptUtil;
@@ -8,6 +9,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@Scope(value="prototype")
 public class UserController {
 
     @Autowired
@@ -47,11 +50,11 @@ public class UserController {
 
     @RequestMapping(value = "/signinwithuser",method = RequestMethod.POST)
     @ResponseBody
-    public ExchangeData<Object> signinWithUser(@RequestBody Signin signin)
+    public ExchangeData<Object> signinWithUser(@RequestBody Fu_user user)
     {
         ExchangeData<Object> exchangeData = new ExchangeData<Object>();
         try {
-            userService.signUser(signin);
+            userService.signUser(user);
         } catch (Exception e) {
             exchangeData.markFail(e.getMessage());
         }

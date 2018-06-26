@@ -1,10 +1,15 @@
 package com.hjrz.entity;
 
 import com.hjrz.constants.Gender;
+import com.hjrz.constants.UserStateEnum;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Fu_user {
+public class Fu_user implements Serializable {
+
+    private static final long serialVersionUID = 2462833486533843826L;
+
     private Long fu_user_id;
 
     private String fu_username;
@@ -17,7 +22,7 @@ public class Fu_user {
 
     private String fu_phonenum;
 
-    private String fu_state;
+    private UserStateEnum fu_state;
 
     private Date create_time;
 
@@ -69,12 +74,12 @@ public class Fu_user {
         this.fu_phonenum = fu_phonenum == null ? null : fu_phonenum.trim();
     }
 
-    public String getFu_state() {
+    public UserStateEnum getFu_state() {
         return fu_state;
     }
 
-    public void setFu_state(String fu_state) {
-        this.fu_state = fu_state == null ? null : fu_state.trim();
+    public void setFu_state(UserStateEnum fu_state) {
+        this.fu_state = fu_state;
     }
 
     public Date getCreate_time() {

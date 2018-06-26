@@ -12,16 +12,52 @@
 		 
 	<mvc:default-servlet-handler />
 		 
-	<context:component-scan base-package="com.hjrz">
-	</context:component-scan>
-	
+	<context:component-scan base-package="com.hjrz.controller"/>
+
 	<mvc:resources mapping="*.css" location="/" />
 	<mvc:resources mapping="*.js" location="/" />
 	<mvc:resources mapping="*.jpg" location="/" />
 	<mvc:resources mapping="*.png" location="/" />
 	<mvc:resources mapping="*.jpeg" location="/" />
 
-	 <!-- 对模型视图添加前后缀 -->  
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="mappingJacksonHttpMessageConverter"
+		  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name = "supportedMediaTypes">
+			<list>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text"/>
+					<constructor-arg index="1" value="plain"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="*"/>
+					<constructor-arg index="1" value="*"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="text"/>
+					<constructor-arg index="1" value="*"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+				<bean class="org.springframework.http.MediaType">
+					<constructor-arg index="0" value="application"/>
+					<constructor-arg index="1" value="json"/>
+					<constructor-arg index="2" value="UTF-8"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 对模型视图添加前后缀 -->
 	 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/"/>

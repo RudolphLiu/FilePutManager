@@ -2,7 +2,7 @@ package com.hjrz.data;
 
 import com.hjrz.constants.CallStatusEnum;
 import com.hjrz.constants.YNEnum;
-import com.hjrz.util.LoggerUtil;
+import com.hjrz.util.LoggerUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -44,16 +44,16 @@ public class ExchangeData<T> {
         this.message = "系统异常,请稍后再试";
       }
       
-      public void markException(Throwable e) {
+      public void markException(Exception e) {
         callStatus = CallStatusEnum.FAIL;
         this.message = e.getMessage();
-        LoggerUtil.logException(ExchangeData.class, e);
+        LoggerUtils.error(ExchangeData.class, e.getMessage(),e);
       }
       
-      public void markException(String message, Throwable e) {
+      public void markException(String message, Exception e) {
         callStatus = CallStatusEnum.FAIL;
         this.message = message;
-        LoggerUtil.logException(ExchangeData.class, e);
+          LoggerUtils.error(ExchangeData.class, e.getMessage(),e);
       }
       
       public void markFail(String message) {
