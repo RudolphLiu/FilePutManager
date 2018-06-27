@@ -1,18 +1,23 @@
 package com.hjrz.service;
 
 import com.hjrz.dao.Fu_roleMapper;
+import com.hjrz.dao.Fu_user_roleMapper;
 import com.hjrz.entity.Fu_role;
 import com.hjrz.pojo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Set;
 
 @Service
 public class RoleService {
 
     @Autowired
     private Fu_roleMapper roleMapper;
+
+    @Autowired
+    private Fu_user_roleMapper fuUserRoleMapper;
 
     public void addRole(Role role)
     {
@@ -29,4 +34,5 @@ public class RoleService {
         fu_role.setFu_role_desc(role.getDesc());
         return fu_role;
     }
+
 }

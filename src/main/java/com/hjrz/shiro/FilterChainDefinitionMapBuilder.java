@@ -15,7 +15,7 @@ public class FilterChainDefinitionMapBuilder{
 
              map.put("/checkLogin","anon");
 
-            map.put("/admin","roles[admin]");
+            map.put("/admin","login");
             map.put("/user","roles[user]");
 
              map.put("/**","authc");

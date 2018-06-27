@@ -18,27 +18,19 @@
 		<property name="cacheManager" ref="cacheManager" />
 	</bean>
 
+	<bean id="login" class="com.hjrz.shiro.LoginFilter"/>
+
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login" />
 		<property name="unauthorizedUrl" value="/error" />
 		<property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"/>
-		<!--<property name="filterChainDefinitions">
-			<value>
-				/login = anon
-				/tosignform = anon
-                /signin = anon
-				/signinwithuser = anon
-				/shiro/logout = logout
-				/checkLogin = anon
-
-                /admin = roles[admin]
-                /user = roles[user]
-
-				/** = authc
-			</value>
-		</property>-->
+		<property name="filters">
+			<map>
+				<entry key="login" value-ref="login"/>
+			</map>
+		</property>
 	</bean>
 
 	<bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"/>
@@ -60,4 +52,6 @@
 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
 	</bean>
+
+
 </beans>
