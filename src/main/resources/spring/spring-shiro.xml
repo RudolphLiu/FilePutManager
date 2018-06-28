@@ -18,7 +18,9 @@
 		<property name="cacheManager" ref="cacheManager" />
 	</bean>
 
-	<bean id="login" class="com.hjrz.shiro.LoginFilter"/>
+
+	<bean id="login" class="com.hjrz.shiro.filter.LoginFilter"/>
+	<bean id="role" class="com.hjrz.shiro.filter.RoleFilter"/>
 
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -29,6 +31,7 @@
 		<property name="filters">
 			<map>
 				<entry key="login" value-ref="login"/>
+				<entry key="role" value-ref="role"/>
 			</map>
 		</property>
 	</bean>

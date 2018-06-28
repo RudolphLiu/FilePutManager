@@ -20,6 +20,9 @@
 	<mvc:resources mapping="*.png" location="/" />
 	<mvc:resources mapping="*.jpeg" location="/" />
 
+
+	<bean name="springContextUtil" class="com.hjrz.util.SpringContextUtil" scope="singleton"/>
+
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
 			<list>

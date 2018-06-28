@@ -1,4 +1,4 @@
-package com.hjrz.shiro;
+package com.hjrz.shiro.filter;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;

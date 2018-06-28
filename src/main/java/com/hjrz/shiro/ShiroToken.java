@@ -6,20 +6,21 @@ import java.io.Serializable;
 
 public class ShiroToken extends UsernamePasswordToken implements Serializable{
 
-    private static final long serialVersionUID = 8807759798359732230L;
+    private static final long serialVersionUID = 2485549467435521959L;
 
-    public ShiroToken(String username, String pwd) {
-        super(username, pwd);
-        this.pwd = pwd;
+    public ShiroToken(String username, String pswd) {
+        super(username,pswd);
+        this.pswd = pswd ;
     }
 
-    private String pwd;
+    /** 登录密码[字符串类型] 因为父类是char[] ] **/
+    private String pswd ;
 
-    public String getPwd() {
-        return pwd;
+    public String getPswd() {
+        return pswd;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPswd(String pswd) {
+        this.pswd = pswd;
     }
 }

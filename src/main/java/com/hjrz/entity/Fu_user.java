@@ -14,7 +14,7 @@ public class Fu_user implements Serializable {
 
     private String fu_username;
 
-    private String fu_password;
+    private transient String fu_password;
 
     private String fu_realname;
 

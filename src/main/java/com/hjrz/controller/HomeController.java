@@ -26,9 +26,9 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping(value="/admin")
+    @RequestMapping(value="/adminpage")
     public String toadmin(){return "admin";}
 
-    @RequestMapping(value="/user")
+    @RequestMapping(value="/userpage")
     public String touser(){return "user";}
 }

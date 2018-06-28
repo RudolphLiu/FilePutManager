@@ -13,13 +13,13 @@
 </head>
 <body>
     <div align="center">
-        <h1>Welcome! <shiro:principal /></h1>
+        <h1>Welcome! ${nickname}</h1>
         <a href="<%=request.getContextPath() %>/shiro/logout">LogOut</a>
         <shiro:hasRole name="admin">
-            <a href="<%=request.getContextPath() %>/admin">ADMIN TEST</a>
+            <a href="<%=request.getContextPath() %>/adminpage">ADMIN TEST</a>
         </shiro:hasRole>
         <shiro:hasRole name="user">
-            <a href="<%=request.getContextPath() %>/user">USER TEST</a>
+            <a href="<%=request.getContextPath() %>/userpage">USER TEST</a>
         </shiro:hasRole>
     </div>
 </body>

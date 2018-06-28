@@ -3,11 +3,14 @@ package com.hjrz.service;
 import com.hjrz.dao.Fu_roleMapper;
 import com.hjrz.dao.Fu_user_roleMapper;
 import com.hjrz.entity.Fu_role;
+import com.hjrz.entity.Fu_user_role;
 import com.hjrz.pojo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,20 +22,17 @@ public class RoleService {
     @Autowired
     private Fu_user_roleMapper fuUserRoleMapper;
 
-    public void addRole(Role role)
+    public Set<String> SelectRolesByUserID(Long userid)
     {
-        Fu_role fu_role = this.toEntity(role);
-        fu_role.setCreate_time(new Date());
-        roleMapper.insertSelective(fu_role);
-    }
-
-    public Fu_role toEntity(Role role)
-    {
-        Fu_role fu_role = new Fu_role();
-        fu_role.setFu_parent_id(role.getParentid());
-        fu_role.setFu_role_name(role.getName());
-        fu_role.setFu_role_desc(role.getDesc());
-        return fu_role;
+        Set<String> RoleSet = new HashSet<String>();
+        List<Fu_user_role> user_roleList = fuUserRoleMapper.selectByUserID(userid);
+        for(Fu_user_role user_role :user_roleList)
+        {
+            Fu_role role = roleMapper.selectByPrimaryKey(user_role.getFu_role_id());
+            String rolename = role.getFu_role_name();
+            RoleSet.add(rolename);
+        }
+        return RoleSet;
     }
 
 }

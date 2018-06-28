@@ -11,6 +11,7 @@
   <sql id="Base_Column_List" >
     fu_role_id, fu_parent_id, fu_role_name, fu_role_desc, create_time
   </sql>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
