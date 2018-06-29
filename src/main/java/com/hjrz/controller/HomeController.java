@@ -20,6 +20,12 @@ public class HomeController {
     @RequestMapping(value = "/error")
     public String toerror(){return "error";}
 
+    @RequestMapping(value = "/unauthorized")
+    public String unauthorized()
+    {
+        return "unauthorized";
+    }
+
     @RequestMapping(value="/login")
     public String tologin()
     {

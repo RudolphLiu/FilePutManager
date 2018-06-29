@@ -21,6 +21,11 @@
         <shiro:hasRole name="user">
             <a href="<%=request.getContextPath() %>/userpage">USER TEST</a>
         </shiro:hasRole>
+        <shiro:hasRole name="admin">
+            <a href="<%=request.getContextPath() %>/adminstrative">行政管理系统</a>
+            <a href="<%=request.getContextPath() %>/sales">销售管理系统</a>
+            <a href="<%=request.getContextPath() %>/fileupload">文件管理系统</a>
+        </shiro:hasRole>
     </div>
 </body>
 </html>

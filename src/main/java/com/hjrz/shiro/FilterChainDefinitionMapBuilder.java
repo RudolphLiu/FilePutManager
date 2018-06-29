@@ -15,8 +15,12 @@ public class FilterChainDefinitionMapBuilder{
 
              map.put("/checkLogin","anon");
 
-            map.put("/adminpage","role");
-            map.put("/userpage","role");
+             map.put("/adminpage","role[admin]");
+             map.put("/adminstrative","role[admin]");
+             map.put("/fileupload","role[admin]");
+             map.put("/sales","role[admin]");
+             map.put("/userpage","role[user]");
+
 
              map.put("/**","authc");
         return map;
