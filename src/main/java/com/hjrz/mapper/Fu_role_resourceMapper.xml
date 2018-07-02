@@ -10,6 +10,7 @@
     fu_role_resource_id, fu_role_id, fu_resource_id
   </sql>
 
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

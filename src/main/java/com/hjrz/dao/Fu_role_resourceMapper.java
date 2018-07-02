@@ -1,6 +1,7 @@
 package com.hjrz.dao;
 
 import com.hjrz.entity.Fu_role_resource;
+import com.sun.tools.javac.util.List;
 
 public interface Fu_role_resourceMapper {
     int deleteByPrimaryKey(Long fu_role_resource_id);

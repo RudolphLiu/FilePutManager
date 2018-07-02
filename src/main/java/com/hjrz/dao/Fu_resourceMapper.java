@@ -2,6 +2,8 @@ package com.hjrz.dao;
 
 import com.hjrz.entity.Fu_resource;
 
+import java.util.List;
+
 public interface Fu_resourceMapper {
     int deleteByPrimaryKey(Long fu_resource_id);
 

@@ -16,6 +16,12 @@
     create_time
   </sql>
 
+  <select id="selectAlluser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from fu_user
+  </select>
+
   <select id="userlogin" resultMap="BaseResultMap">
     select
   <include refid="Base_Column_List"/>

@@ -11,18 +11,18 @@ public class PageController {
     @RequestMapping(value="/adminstrative")
     public String toadminstrative()
     {
-        return "page/adminstrative";
+        return "pages/adminstrative";
     }
 
     @RequestMapping(value="/fileupload")
     public String tofileupload()
     {
-        return "page/fileupload";
+        return "pages/fileupload";
     }
 
     @RequestMapping(value="/sales")
     public String tosales()
     {
-        return "page/sales";
+        return "pages/sales";
     }
 }

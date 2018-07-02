@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -52,6 +53,12 @@ public class UserService {
     {
         Fu_user fuUser = userMapper.selectByUserName(username);
         return fuUser;
+    }
+
+    public List<Fu_user> selectAllUser()
+    {
+        List<Fu_user> userList = userMapper.selectAlluser();
+        return userList;
     }
 
 }

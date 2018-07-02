@@ -2,6 +2,7 @@ package com.hjrz.dao;
 
 import com.hjrz.entity.Fu_user;
 
+import java.util.List;
 import java.util.Map;
 
 public interface Fu_userMapper {
@@ -16,6 +17,8 @@ public interface Fu_userMapper {
     Fu_user selectByUserName(String username);
 
     Fu_user userlogin(Map<String,String> map);
+
+    List<Fu_user> selectAlluser();
 
     int updateByPrimaryKeySelective(Fu_user record);
 
