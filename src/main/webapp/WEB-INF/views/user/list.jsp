@@ -14,6 +14,7 @@
 <body>
     <table>
     <c:forEach items="${userlist}" var="u">
+
         <b>${u.fu_username}</b>
         <b>${u.fu_realname}</b>
         <b>${u.fu_gender}</b>

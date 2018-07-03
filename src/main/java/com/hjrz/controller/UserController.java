@@ -1,6 +1,7 @@
 package com.hjrz.controller;
 
 import com.hjrz.data.ExchangeData;
+import com.hjrz.entity.Fu_role;
 import com.hjrz.entity.Fu_user;
 import com.hjrz.pojo.Signin;
 import com.hjrz.service.UserService;
@@ -11,6 +12,7 @@ import jdk.nashorn.internal.parser.Token;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -18,8 +20,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +49,11 @@ public class UserController {
             SimpleHash result = new SimpleHash("MD5",password,username,1);
             if (!TokenManager.isLogin()){
                 TokenManager.login(username,result.toString(),false);
+                Fu_user token = TokenManager.getToken();
+                HttpSession session = request.getSession();
+                session.setAttribute("token",token);
             }
-            request.setAttribute("nickname",TokenManager.getNickname());
-            return "index";
+            return "redirect:/index";
         } catch (Exception ex) {
             ex.printStackTrace();
             return "error";

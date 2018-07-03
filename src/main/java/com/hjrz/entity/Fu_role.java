@@ -1,6 +1,8 @@
 package com.hjrz.entity;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Fu_role {
     private Long fu_role_id;
@@ -12,6 +14,8 @@ public class Fu_role {
     private String fu_role_desc;
 
     private Date create_time;
+
+    private List<Fu_resource> resources = new LinkedList<Fu_resource>();
 
     public Long getFu_role_id() {
         return fu_role_id;
@@ -51,6 +55,14 @@ public class Fu_role {
 
     public void setCreate_time(Date create_time) {
         this.create_time = create_time;
+    }
+
+    public List<Fu_resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Fu_resource> resources) {
+        this.resources = resources;
     }
 
     @Override
