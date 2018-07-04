@@ -47,7 +47,6 @@ public class UserService {
         return user;
     }
 
-
     //根据用户名获取用户信息
     public Fu_user selectByUserName(String username)
     {

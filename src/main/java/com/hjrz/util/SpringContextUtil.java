@@ -50,6 +50,4 @@ public class SpringContextUtil implements ApplicationContextAware {
 			throws NoSuchBeanDefinitionException {
 		return applicationContext.getAliases(name);
 	}
-
-
 }
